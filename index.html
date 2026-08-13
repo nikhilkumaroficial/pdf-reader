@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Leaf • PDF Book Reader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<div id="app">
+  <section id="libraryView" class="view">
+    <header class="library-header">
+      <div class="brand"><span class="brand-mark">L</span><div><strong>Leaf</strong><small>your local library</small></div></div>
+      <div class="header-actions">
+        <button id="themeBtn" class="icon-btn" title="Toggle theme">◐</button>
+        <button id="uploadBtn" class="primary"><span>＋</span> Upload PDF</button>
+        <input id="fileInput" type="file" accept="application/pdf,.pdf" hidden>
+      </div>
+    </header>
+    <main class="library-main">
+      <div class="library-hero">
+        <div><p class="eyebrow">PRIVATE • LOCAL • YOURS</p><h1>My Library</h1><p>Read your PDFs like real books. Everything stays in this browser.</p></div>
+        <div class="library-tools"><label>Sort <select id="sortSelect"><option value="recent">Recently opened</option><option value="added">Recently added</option><option value="name">Name</option></select></label><button id="clearAll" class="ghost danger">Clear all</button></div>
+      </div>
+      <div id="dropzone" class="dropzone"><div class="drop-icon">↓</div><div><b>Drop a PDF here</b><span>or click to browse from your device</span></div></div>
+      <div id="bookGrid" class="book-grid"></div>
+      <div id="emptyState" class="empty-state"><div class="empty-art"><span></span><span></span><span></span></div><h2>Your library is empty</h2><p>Upload a PDF to start reading.</p><button class="primary" id="emptyUpload">Upload your first book</button></div>
+    </main>
+  </section>
+
+  <section id="readerView" class="view hidden">
+    <header class="reader-header">
+      <button id="backBtn" class="icon-btn back">←</button><div class="reader-title"><strong id="readerTitle">Book</strong><span id="readerMeta">1 / 1</span></div>
+      <div class="reader-actions"><button id="zoomOut" class="icon-btn">−</button><span id="zoomLabel">100%</span><button id="zoomIn" class="icon-btn">+</button><button id="fitBtn" class="icon-btn">Fit</button><button id="fullscreenBtn" class="icon-btn">⛶</button><button id="readerTheme" class="icon-btn">◐</button></div>
+    </header>
+    <main id="readerMain" class="reader-main">
+      <div id="bookViewport" class="book-viewport">
+        <div id="book" class="book"></div>
+        <div id="loader" class="loader"><div class="spinner"></div><span>Rendering page…</span></div>
+        <div id="hitLeft" class="hit hit-left"></div><div id="hitRight" class="hit hit-right"></div>
+      </div>
+      <div class="reader-hint">Drag a corner or swipe • ← → to turn pages</div>
+    </main>
+    <footer class="reader-footer"><button id="prevBtn" class="control">‹ <span>Previous</span></button><div class="progress-wrap"><div class="page-label"><span id="pageCurrent">1</span> / <span id="pageTotal">1</span></div><input id="pageRange" type="range" min="1" max="1" value="1"><div class="progress-bar"><i id="progressFill"></i></div></div><button id="nextBtn" class="control"><span>Next</span> ›</button></footer>
+  </section>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.min.mjs" type="module"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
